@@ -11,39 +11,48 @@ public class TebakTebakan {
         String inputAwal = scanner.nextLine();
 
         if (inputAwal.equalsIgnoreCase("ok")) {
-            System.out.println("Game dimulai!");
+            boolean ulang = true;
+            
+            do {
+                System.out.println("Game dimulai!");
 
-            int jumlahSoal = soal.length;
-            int jawabanBenar = 0;
-            int poin = 0;
+                int jumlahSoal = soal.length;
+                int jawabanBenar = 0;
+                int poin = 0;
 
-            for (int i = 0; i < jumlahSoal; i++) {
-                System.out.println("Tebak kata: " + soal[i]);
-                System.out.print("Masukkan jawaban: ");
-                String jawabanUser = scanner.nextLine();
+                for (int i = 0; i < jumlahSoal; i++) {
+                    System.out.println("Tebak kata: " + soal[i]);
+                    System.out.print("Masukkan jawaban: ");
+                    String jawabanUser = scanner.nextLine();
 
-                if (jawabanUser.equalsIgnoreCase(jawaban[i])) {
-                    System.out.println("Selamat, jawaban Anda benar!");
-                    jawabanBenar++;
-                    poin += 10;
-                } else if (jawabanUser.length() == jawaban[i].length() && isSetengahBenar(jawabanUser, jawaban[i])) {
-                    System.out.println("Hampir tepat, silahkan coba lagi.");
-                } else {
-                    System.out.println("Tidak tepat, silahkan coba lagi.");
+                    if (jawabanUser.equalsIgnoreCase(jawaban[i])) {
+                        System.out.println("Selamat, jawaban Anda benar!");
+                        jawabanBenar++;
+                        poin += 10;
+                    } else if (jawabanUser.length() == jawaban[i].length() && isSetengahBenar(jawabanUser, jawaban[i])) {
+                        System.out.println("Hampir tepat, silahkan coba lagi.");
+                    } else {
+                        System.out.println("Tidak tepat, silahkan coba lagi.");
+                    }
                 }
-            }
 
-            System.out.println("\nGame Selesai!");
-            System.out.println("Jumlah jawaban benar: " + jawabanBenar);
-            System.out.println("Total poin Anda: " + poin);
+                System.out.println("\nGame Selesai!");
+                System.out.println("Jumlah jawaban benar: " + jawabanBenar);
+                System.out.println("Total poin Anda: " + poin);
 
-            if (poin == jumlahSoal * 10) {
-                System.out.println("Anda telah menyelesaikan game dengan sempurna.");
-            } else if (poin > 0) {
-                System.out.println("Jawaban anda belum memenuhi standart.");
-            } else {
-                System.out.println("Gagal, silahkan coba lagi.");
-            }
+                if (poin == jumlahSoal * 10) {
+                    System.out.println("Anda telah menyelesaikan game dengan sempurna.");
+                } else if (poin > 0) {
+                    System.out.println("Point anda belum memenuhi standart.");
+                } else {
+                    System.out.println("Gagal, silahkan coba lagi.");
+                }
+                
+                System.out.print("Ingin bermain lagi? Ketik \"iya\" untuk mengulang game dan ketik \"tidak\" untuk menutup game: ");
+                String ulangInput = scanner.nextLine();
+                ulang = ulangInput.equalsIgnoreCase("iya");
+                
+            } while (ulang);
         }
 
         scanner.close();
